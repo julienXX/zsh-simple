@@ -13,7 +13,7 @@ function ruby_prompt(){
   rv=$(rbenv version-name)
   if (echo $rv &> /dev/null)
   then
-    echo "%{$fg_bold[gray]%}ruby $rv%{$reset_color%}"
+    echo "%{$fg_bold[green]%}ruby $rv%{$reset_color%}"
   elif $(which rvm &> /dev/null)
   then
     echo "%{$fg_bold[gray]%}$(rvm tools identifier)%{$reset_color%}"
@@ -111,7 +111,7 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
 PROMPT='
 ${current_path}
-%{$fg[white]%}$(git_time_since_commit)%{$fg[white]%}$(prompt_char) ✪  %{$reset_color%}'
+%{$fg[gray]%}$(git_time_since_commit)%{$fg[gray]%}$(prompt_char) ✪  %{$reset_color%}'
 
 RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 
@@ -121,9 +121,6 @@ RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 
 # Show completion on first TAB
 setopt menucomplete
-
-# load autocompletion
-autoload -U compinit && compinit
 
 # enable cache
 zstyle ':completion:*' use-cache on
@@ -156,6 +153,10 @@ zstyle ':completion:*:match:*' original only
 # number of errors allowed by _approximate increase with the length of what we have typed so far
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3))numeric)'
 
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 ##########
 # ALIASES
 ##########
@@ -164,7 +165,7 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
 alias vim='/usr/local/bin/vim'
-alias git='hub'
+# alias git='hub'
 
 # Git aliases
 alias gplod="git pull origin development"

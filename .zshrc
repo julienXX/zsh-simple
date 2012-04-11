@@ -110,8 +110,8 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 #########
 
 PROMPT='
-%{$fg[blue]%}${current_path}
-%{$fg[gray]%}$(git_time_since_commit)%{$fg[blue]%}$(prompt_char)%{$fg[white]%} ✪  %{$reset_color%}'
+%{$fg[blue]%}${current_path}%{$reset_color%}
+%{$fg[gray]%}$(git_time_since_commit)%{$fg[gray]%}$(prompt_char)%{$fg[white]%} ✪  %{$reset_color%}'
 
 RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 

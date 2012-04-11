@@ -30,5 +30,5 @@ if [[ $GIT_REPO_PATH != '' && $GIT_REPO_PATH != '~' && $GIT_REPO_PATH != "$HOME/
     GIT_DIRTY=" %{[32m%}✔%{[0m%}"
   fi
 
-  echo " %{[34m%}$GIT_BRANCH %{[30m%}$GIT_COMMIT_ID%{[0m%}$GIT_MODE$GIT_DIRTY"
+  echo " %{[34m%}$GIT_BRANCH %{[33m%}$GIT_COMMIT_ID%{[0m%}$GIT_MODE$GIT_DIRTY"
 fi

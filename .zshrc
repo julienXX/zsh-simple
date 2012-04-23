@@ -196,6 +196,9 @@ HISTFILE=~/.history
 export EDITOR=/usr/local/bin/vim
 export SHELL=/usr/local/bin/zsh
 
+# VimClojure
+export VIMCLOJURE_SERVER_JAR="$HOME/.nailgun/server-2.3.1.jar"
+
 # Bundler
 export USE_BUNDLER=force
 

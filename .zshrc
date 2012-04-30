@@ -213,3 +213,4 @@ fi
 # RBenv
 eval "$(rbenv init -)"
 
+source "`brew --prefix grc`/etc/grc.bashrc"

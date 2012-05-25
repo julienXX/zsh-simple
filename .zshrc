@@ -165,7 +165,6 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
 alias vim='/usr/local/bin/vim'
-# alias git='hub'
 
 # Git aliases
 alias gplod="git pull origin development"

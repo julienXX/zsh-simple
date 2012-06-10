@@ -82,6 +82,11 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+# Emacs
+function e() {
+  open -a Emacs.app "$1"
+}
+
 #########
 # COLORS
 #########

@@ -113,12 +113,15 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 #########
 # PROMPT
 #########
+export PS1=$'
+%{\e[0;34m%}∴ %{\e[0;34m%}%d%{\e[0m%}$(~/bin/git-cwd-info)
+%{$fg[blue]%}λ%{$reset_color%} '
 
-PROMPT='
-%{$fg[blue]%}${current_path}%{$reset_color%}
-%{$fg[gray]%}$(git_time_since_commit)%{$fg[gray]%}$(prompt_char)%{$fg[white]%} ✪  %{$reset_color%}'
+# PROMPT='
+# %{$fg[blue]%}${current_path}%{$reset_color%}
+# %{$fg[gray]%}$(git_time_since_commit)%{$fg[gray]%}$(prompt_char)%{$fg[white]%} ✪  %{$reset_color%}'
 
-RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
+# RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 
 #############
 # COMPLETION
@@ -169,7 +172,6 @@ compinit
 alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
-alias vim='/usr/local/bin/vim'
 
 # Git aliases
 alias gplod="git pull origin development"

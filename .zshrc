@@ -1,81 +1,6 @@
-# DESCRIPTION:
-#   A simple zsh configuration that gives you 90% of the useful features that I use everyday.
-#
-# AUTHOR:
-#   Geoffrey Grosenbach http://peepcode.com
-
 ############
 # FUNCTIONS
 ############
-
-# RVM or rbenv
-function ruby_prompt(){
-  rv=$(rbenv version-name)
-  if (echo $rv &> /dev/null)
-  then
-    echo "%{$fg_bold[green]%}ruby $rv%{$reset_color%}"
-  elif $(which rvm &> /dev/null)
-  then
-    echo "%{$fg_bold[gray]%}$(rvm tools identifier)%{$reset_color%}"
-  else
-    echo ""
-  fi
-}
-
-# Determine the time since last commit. If branch is clean,
-# use a neutral color, otherwise colors will vary according to time.
-function git_time_since_commit() {
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    # Only proceed if there is actually a commit.
-    if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
-      # Get the last commit.
-      last_commit=`git log --pretty=format:'%at' -1 2> /dev/null`
-      now=`date +%s`
-      seconds_since_last_commit=$((now-last_commit))
-
-      # Totals
-      MINUTES=$((seconds_since_last_commit / 60))
-      HOURS=$((seconds_since_last_commit/3600))
-
-      # Sub-hours and sub-minutes
-      DAYS=$((seconds_since_last_commit / 86400))
-      SUB_HOURS=$((HOURS % 24))
-      SUB_MINUTES=$((MINUTES % 60))
-
-      if [[ -n $(git status -s 2> /dev/null) ]]; then
-        if [ "$MINUTES" -gt 30 ]; then
-          COLOR="$ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG"
-        elif [ "$MINUTES" -gt 10 ]; then
-          COLOR="$ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM"
-        else
-          COLOR="$ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT"
-        fi
-      else
-        COLOR="$ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL"
-      fi
-
-      if [ "$HOURS" -gt 24 ]; then
-        echo "($COLOR${DAYS}d${SUB_HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
-      elif [ "$MINUTES" -gt 60 ]; then
-        echo "($COLOR${HOURS}h${SUB_MINUTES}m%{$reset_color%}|"
-      else
-        echo "($COLOR${MINUTES}m%{$reset_color%}|"
-      fi
-    else
-      COLOR="$ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL"
-      echo "($COLOR~|"
-    fi
-  fi
-}
-
-function prompt_char {
-  git branch >/dev/null 2>/dev/null && echo '[±])' && return
-  hg root >/dev/null 2>/dev/null && echo '[☿])' && return
-  echo '[○]'
-}
-
-# Current path color depending on last command exit status
-local current_path="%(?,%{$fg[gray]%}%~%{$reset_color%},%{$fg[red]%}%~%{$reset_color%})"
 
 # mkdir & cd to it
 function mcd() {
@@ -85,6 +10,35 @@ function mcd() {
 # Emacs
 function e() {
   open -a Emacs.app "$1"
+}
+
+# Git
+function g() {
+  REAL_GIT=$(which git)
+  BRANCH=$($REAL_GIT branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/")
+
+  # If there is more than one parameter, proceed with normal git
+  if [ $# -gt 0 ]
+  then
+      $REAL_GIT $@
+      return
+  fi
+
+  # Check if the only argument is "push" or "pull"
+  if [ $1 ]
+  then
+    if [ $1 == "pull" ]
+    then
+      $REAL_GIT pull --rebase origin $BRANCH
+    elif [ $1 == "push" ]
+    then
+      $REAL_GIT push origin $BRANCH
+    else
+      $REAL_GIT
+    fi
+  else
+    $REAL_GIT
+  fi
 }
 
 #########
@@ -116,12 +70,6 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 export PS1=$'
 %{\e[0;34m%}∴ %{\e[0;34m%}%d%{\e[0m%}$(~/bin/git-cwd-info)
 %{$fg[blue]%}λ%{$reset_color%} '
-
-# PROMPT='
-# %{$fg[blue]%}${current_path}%{$reset_color%}
-# %{$fg[gray]%}$(git_time_since_commit)%{$fg[gray]%}$(prompt_char)%{$fg[white]%} ✪  %{$reset_color%}'
-
-# RPROMPT='%{$fg[white]%} $(ruby_prompt)$(~/bin/git-cwd-info)%{$reset_color%}'
 
 #############
 # COMPLETION
@@ -188,7 +136,7 @@ alias bi="bundle install"
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/Users/julien/.rbenv/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/Users/julien/.rbenv/bin:$PATH
 
 #######
 # MISC
@@ -202,17 +150,11 @@ HISTFILE=~/.history
 export EDITOR=/usr/local/bin/vim
 export SHELL=/usr/local/bin/zsh
 
-# VimClojure
-export VIMCLOJURE_SERVER_JAR="$HOME/.nailgun/server-2.3.1.jar"
-
 # Bundler
 export USE_BUNDLER=force
 
 # Emacs mode
 bindkey -e
-
-# Tmuxinator
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 # Autojump
 if [ -f `brew --prefix`/etc/autojump ]; then

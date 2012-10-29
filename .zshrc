@@ -7,6 +7,11 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+# remove .orig files
+function rmorig() {
+  find . -name "*.orig" -exec rm -r {} \;
+}
+
 # Emacs
 function e() {
   open -a Emacs.app "$1"

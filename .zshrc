@@ -7,9 +7,9 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
-# remove .orig files
-function rmorig() {
-  find . -name "*.orig" -exec rm -r {} \;
+# remove results from a find
+function findrm() {
+  find . -name "$1" -exec rm -r {} \;
 }
 
 # Emacs
@@ -133,9 +133,7 @@ export USE_BUNDLER=force
 bindkey -e
 
 # Autojump
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
+[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # RBenv
 eval "$(rbenv init -)"

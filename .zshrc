@@ -108,6 +108,9 @@ alias glog="git log -p -40 | vim - -R -c 'set foldmethod=syntax'"
 alias be="bundle exec"
 alias bi="bundle install"
 
+# CTags
+alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public -f TAGS"
+
 #######
 # PATH
 #######

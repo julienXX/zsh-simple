@@ -4,17 +4,22 @@
 
 # mkdir & cd to it
 function mcd() {
-  mkdir -p "$1" && cd "$1";
+    mkdir -p "$1" && cd "$1";
 }
 
 # remove results from a find
 function findrm() {
-  find . -name "$1" -exec rm -r {} \;
+    find . -name "$1" -exec rm -r {} \;
 }
 
 # Emacs
 function e() {
-  open -a Emacs.app "$1"
+    open -a Emacs.app "$1"
+}
+
+#Ctags
+function ctag() {
+    ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public -f TAGS
 }
 
 #########
@@ -134,9 +139,6 @@ bindkey -e
 
 # Autojump
 [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-# RBenv
-eval "$(rbenv init -)"
 
 source "`brew --prefix grc`/etc/grc.bashrc"
 

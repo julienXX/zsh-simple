@@ -17,11 +17,6 @@ function e() {
     open -a Emacs.app "$1"
 }
 
-#Ctags
-function ctag() {
-    ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public -f TAGS
-}
-
 #########
 # COLORS
 #########

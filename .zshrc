@@ -115,7 +115,7 @@ alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git -
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/Users/julien/.rbenv/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:$PATH
 
 #######
 # MISC

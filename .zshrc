@@ -142,3 +142,7 @@ source "`brew --prefix grc`/etc/grc.bashrc"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Chruby
+source /usr/local/share/chruby/chruby.sh
+chruby 1.9.3-p362

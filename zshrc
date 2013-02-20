@@ -119,7 +119,7 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:$PATH
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:$PATH
 
 #######
 # MISC

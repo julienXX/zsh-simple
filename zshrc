@@ -89,6 +89,15 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# up and down arrows do history search
+autoload -U history-search-end
+
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+
+bindkey "\e[A" history-beginning-search-backward-end
+bindkey "\e[B" history-beginning-search-forward-end
+
 ##########
 # ALIASES
 ##########
@@ -109,7 +118,7 @@ alias be="bundle exec"
 alias bi="bundle install"
 
 # CTags
-alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public -f TAGS"
+alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor -f TAGS"
 
 # Quick way to rebuild the Launch Services database and get rid
 # of duplicates in the Open With submenu.

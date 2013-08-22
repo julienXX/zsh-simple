@@ -12,11 +12,6 @@ function findrm() {
     find . -name "$1" -exec rm -r {} \;
 }
 
-# Emacs
-function e() {
-    open -a Emacs.app "$1"
-}
-
 # Clojure
 function clj() {
     java -cp ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar clojure.main "$1"

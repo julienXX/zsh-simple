@@ -106,6 +106,8 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
 
+alias e='open -a /Applications/Emacs.app $1'
+
 # Git aliases
 alias gplod="git pull origin development"
 alias gplom="git pull origin master"

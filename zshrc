@@ -126,6 +126,8 @@ alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git -
 # of duplicates in the Open With submenu.
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
+alias psgrep="ps aux | grep "
+
 #######
 # PATH
 #######

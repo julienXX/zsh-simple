@@ -138,6 +138,9 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X1
 # MISC
 #######
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000

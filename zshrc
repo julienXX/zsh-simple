@@ -132,7 +132,7 @@ alias psgrep="ps aux | grep "
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/Users/julien/.cask/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/Users/julien/.cask/bin:/Users/julien/.cabal/bin:$PATH
 
 #######
 # MISC

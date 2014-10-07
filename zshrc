@@ -128,6 +128,8 @@ alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/
 
 alias psgrep="ps aux | grep "
 
+alias hb="hub browse"
+
 #######
 # PATH
 #######

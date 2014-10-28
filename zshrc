@@ -9,7 +9,7 @@ function mcd() {
 
 # remove results from a find
 function findrm() {
-    find . -name "$1" -exec rm -r {} \;
+    find . -iname "$1" -exec rm -r {} \;
 }
 
 # Clojure

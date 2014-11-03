@@ -162,9 +162,6 @@ bindkey -e
 
 source "`brew --prefix grc`/etc/grc.bashrc"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

@@ -120,7 +120,7 @@ alias be="bundle exec"
 alias bi="bundle install"
 
 # CTags
-alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor -f TAGS"
+alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor --exclude=app/assets -f TAGS"
 
 # Quick way to rebuild the Launch Services database and get rid
 # of duplicates in the Open With submenu.

@@ -47,6 +47,13 @@ export PS1=$'
 %{\e[0;34m%}∴ %{\e[0;34m%}%d%{\e[0m%}$(~/bin/git-cwd-info)
 %{$fg[blue]%}λ%{$reset_color%} '
 
+RPROMPT='[%D{%L:%M:%S %p}]'
+TMOUT=1
+
+TRAPALRM() {
+    zle reset-prompt
+}
+
 #############
 # COMPLETION
 #############

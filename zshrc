@@ -47,12 +47,9 @@ export PS1=$'
 %{\e[0;34m%}∴ %{\e[0;34m%}%d%{\e[0m%}$(~/bin/git-cwd-info)
 %{$fg[blue]%}λ%{$reset_color%} '
 
-RPROMPT='[%D{%L:%M:%S %p}]'
-TMOUT=1
-
-TRAPALRM() {
-    zle reset-prompt
-}
+_lineup=$'\e[1A'
+_linedown=$'\e[1B'
+RPROMPT=%{${_lineup}%}%{$fg[magenta]%}[%*]%{${_linedown}%}%{$reset_color%}
 
 #############
 # COMPLETION
@@ -168,6 +165,9 @@ bindkey -e
 [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 source "`brew --prefix grc`/etc/grc.bashrc"
+
+# Cabal
+export PATH="$HOME/Library/Haskell/bin:$HOME/.cabal/bin:$PATH"
 
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"

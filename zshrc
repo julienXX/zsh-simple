@@ -44,8 +44,8 @@ ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 # PROMPT
 #########
 export PS1=$'
-%{\e[0;34m%}∴ %{\e[0;34m%}%d%{\e[0m%}$(~/bin/git-cwd-info)
-%{$fg[blue]%}λ%{$reset_color%} '
+%{$fg[blue]%}∴ %d%{$fg[yellow]%}$(~/bin/git-cwd-info)
+%{$fg[blue]%}λ %{$reset_color%}'
 
 _lineup=$'\e[1A'
 _linedown=$'\e[1B'

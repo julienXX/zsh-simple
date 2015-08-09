@@ -172,6 +172,9 @@ if [ -d "$GHC_DOT_APP" ]; then
   export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
 
+# OPAM
+. /Users/julien/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

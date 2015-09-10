@@ -1,7 +1,7 @@
 A Simple ZSH Config
 ===================
 
-A simple configuration for getting started with zsh. 
+My simple configuration for zsh. 
 
 Installation
 ------------

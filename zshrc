@@ -12,11 +12,6 @@ function findrm() {
     find . -iname "$1" -exec rm -r {} \;
 }
 
-# Clojure
-function clj() {
-    java -cp ~/.m2/repository/org/clojure/clojure/1.5.1/clojure-1.5.1.jar clojure.main "$1"
-}
-
 #########
 # COLORS
 #########
@@ -113,10 +108,6 @@ alias duh='du -csh'
 alias e='open -a /Applications/Emacs.app $1'
 
 # Git aliases
-alias gplod="git pull origin development"
-alias gplom="git pull origin master"
-alias gpsod="git push origin development"
-alias gpsom="git push origin master"
 alias glog="git log -p -40 | vim - -R -c 'set foldmethod=syntax'"
 
 # Bundler

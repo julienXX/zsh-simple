@@ -11,10 +11,5 @@ Installation
     cp zsh-simple/bin/* ~/bin/
     chmod +x ~/bin/git-current-branch
     chmod +x ~/bin/git-cwd-info
+    chmod +x ~/bin/git-delete-branch
 
-About
-------------
-
-My command line prompt is [explained here.](http://peepcode.com/blog/2012/my-command-line-prompt)
-
-It is, in part, based on the expertise of Ben Hoskings in the [PeepCode Advanced Git Screencast.](http://peepcode.com/products/advanced-git)

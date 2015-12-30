@@ -122,8 +122,9 @@ alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git -
 alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
 
 alias psgrep="ps aux | grep "
-
 alias hb="hub browse"
+alias internet="ping 8.8.8.8"
+alias please='sudo $(fc -ln -1)'
 
 #######
 # PATH

@@ -168,7 +168,7 @@ fi
 . /Users/julien/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # OpenSSL
-export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2d_1/include
+export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2g/include
 
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"

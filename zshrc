@@ -158,11 +158,20 @@ bindkey -e
 
 source "`brew --prefix grc`/etc/grc.bashrc"
 
+# OpenSSL
+export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2h_1/include/
+
+# Add GHC 7.10.1 to the PATH, via https://ghcformacosx.github.io/
+export GHC_DOT_APP="/Applications/ghc-7.10.1.app"
+if [ -d "$GHC_DOT_APP" ]; then
+  export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+fi
+
 # OPAM
 . /Users/julien/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-# OpenSSL
-export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2g/include
+# Rustup
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"

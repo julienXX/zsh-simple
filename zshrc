@@ -115,7 +115,7 @@ alias be="bundle exec"
 alias bi="bundle install"
 
 # CTags
-alias ctag="ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor --exclude=app/assets -f TAGS"
+alias ctag="/usr/local/bin/ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor --exclude=app/assets --exclude=coverage -f TAGS"
 
 # Quick way to rebuild the Launch Services database and get rid
 # of duplicates in the Open With submenu.
@@ -166,6 +166,9 @@ export GHC_DOT_APP="/Applications/ghc-7.10.1.app"
 if [ -d "$GHC_DOT_APP" ]; then
   export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
 fi
+
+# Stack binaries
+export PATH="$HOME/.local/bin:$PATH"
 
 # OPAM
 . /Users/julien/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

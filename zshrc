@@ -156,8 +156,6 @@ bindkey -e
 # Autojump
 [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-source "`brew --prefix grc`/etc/grc.bashrc"
-
 # OpenSSL
 export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2h_1/include/
 

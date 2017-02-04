@@ -130,7 +130,7 @@ alias please='sudo $(fc -ln -1)'
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/Users/julien/.cask/bin:/Users/julien/.cabal/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/Users/julien/.cask/bin:/Users/julien/.cabal/bin:/Users/julien/.local/bin:$PATH
 
 #######
 # MISC
@@ -174,6 +174,16 @@ export PATH="$HOME/.local/bin:$PATH"
 # Rustup
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Racer
+export RUST_SRC_PATH="/Users/julien/Code/rust/src"
+
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
+# added by travis gem
+[ -f /Users/julien/.travis/travis.sh ] && source /Users/julien/.travis/travis.sh

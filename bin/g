@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+# g: jebug29's Gopher Shortcut Tool
+# Written by jebug29 on SDF
+# Created: 04 Jul 2018
+# Updated: 04 Jul 2018
+
+VERSION="0.2"
+DESTINATION=$1
+CLIENT=$2
+
+use_sdf=1
+use_lynx=0
+item_type=1
+
+#check for arguments
+if [ $# -eq 0 ];then
+	echo "
+g $VERSION by jebug29 (c) 2018
+Usage: g (username|domain.ext/) [lynx|gopher] [itemtype]
+For more information, type "g -?"
+"
+	exit 1
+fi
+
+#check if user needs help
+if [[ $1 == "--about" || $1 == "--help" || $1 == "-?" ]];then
+echo "
+g: jebug29's Gopher Shortcut Tool (c) 2018 | Version:  $VERSION
+==========================================================
+Usage: g (username|domain.ext/) [lynx|gopher] [itemtype]
+
+Thank you for  using  g - jebug29's  gopher shortcut tool!
+This  program was written because  I  wanted a  better way
+to get  to a  user's  gopher hole without having to either
+navigate through  SDF,  type the  full  link,  or create a
+bunch of aliases in my .profile (which is basically what's
+already happened).
+
+You  can  reach  me via  e-mail at jebug29@sdf.org  or  on
+Mastodon at jebug29@mastodon.sdf.org.
+
+Thank you very much for using my software! Goodbye!
+"
+exit 0
+fi
+
+if [ ! -f ~/.grc ];then
+echo "# Thank you for using g!
+# If  you have any  issues, feel  free to  contact me by e-mail
+# at jebug29@sdf.org or on Mastodon (@jebug29@mastodon.sdf.org)
+use_lynx=0
+" > ~/.grc
+fi
+
+if [[ $DESTINATION = *"."* && $DESTINATION = *"/"* ]];then
+	use_sdf=0
+fi
+
+#checks for .grc file and reads it
+line_num=0
+use_lynx_num=-1
+if [ -f ~/.grc ];then
+	while read -r line || [ -n "$line" ]; do
+		let line_num++
+		IFS='=' lineop=($line)
+		line_var="${lineop[1]}"
+		if [ "${lineop[0]}" == "use_lynx" ];then
+			use_lynx=$line_var
+			use_lynx_num=$line_num
+		fi
+	done < ~/.grc
+fi
+
+#checks if use_lynx was found in ~/.grc
+if [ "$use_lynx_num" -eq -1 ];then
+	use_lynx_num=$(( line_num++ ))
+fi
+
+#sets the client, if specified
+#will write this to the appropriate line in .grc
+if [ "$CLIENT" == "lynx" ];then
+	sed -i "${use_lynx_num}s/.*/use_lynx=1/" ~/.grc
+	use_lynx=1
+elif [ "$CLIENT" == "gopher" ];then
+	sed -i "${use_lynx_num}s/.*/use_lynx=0/" ~/.grc
+	use_lynx=0
+fi
+
+#checks for a single character in $3 for the specified item type
+#will use $2 if $3 is not specified and $2 is a single char
+if [[ ! -z "$3" && "${#3}" -eq 1 ]];then
+	item_type=$3
+elif [[ ! -z "$2" && "${#2}" -eq 1 ]];then
+	item_type=$2
+fi
+
+start_gopher(){
+	if [ "$use_sdf" -eq 1 ];then
+		gopher gopher://gopher.club/"$item_type"/users/"$DESTINATION"
+	else
+		gopher gopher://"$DESTINATION"
+	fi
+}
+
+start_lynx(){
+	if [ "$use_sdf" -eq 1 ];then
+		lynx gopher://gopher.club/"$item_type"/users/"$DESTINATION"
+	else
+		lynx gopher://"$DESTINATION"
+	fi
+}
+
+if [ "$use_lynx" -eq 1 ];then
+	start_lynx
+else
+	start_gopher
+fi
+
+#like jmcgann's School Thoughts, there's nothing to see here. Carry on.
+#Thank you for using my tool! -Jesse (jebug29)

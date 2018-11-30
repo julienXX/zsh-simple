@@ -105,8 +105,6 @@ alias ls='ls -G'
 alias ll='ls -lG'
 alias duh='du -csh'
 
-alias e='open -a /Applications/Emacs.app $1'
-
 # Git aliases
 alias glog="git log -p -40 | vim - -R -c 'set foldmethod=syntax'"
 
@@ -114,23 +112,31 @@ alias glog="git log -p -40 | vim - -R -c 'set foldmethod=syntax'"
 alias be="bundle exec"
 alias bi="bundle install"
 
-# CTags
-alias ctag="/usr/local/bin/ctags -e -R --extra=+fq --exclude=db --exclude=test --exclude=.git --exclude=public --exclude=tmp --exclude=node_modules --exclude=vendor --exclude=app/assets --exclude=coverage -f TAGS"
-
-# Quick way to rebuild the Launch Services database and get rid
-# of duplicates in the Open With submenu.
-alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
-
 alias psgrep="ps aux | grep "
 alias hb="hub browse"
 alias internet="ping 8.8.8.8"
-alias please='sudo $(fc -ln -1)'
+alias please='sudo $(fc -ln 0)'
+
+alias kfr="setxkbmap -layout fr -option ctrl:nocaps -option compose:ralt"
+alias kus="setxkbmap -layout us -option ctrl:nocaps -option compose:ralt"
+
+alias vpn="cd /home/julien/config/Jblanchard@50.200.182.250 && sudo openvpn Jblanchard@50.200.182.250.ovpn && cd -"
+alias ssh_content_staging="cd /home/julien/Code/content/rails && /home/julien/Code/sm-terraform/infra/staging/assume_staging_admin.sh eb ssh content-worker-staging && cd -"
+alias ssh_content_web_staging="cd /home/julien/Code/content/rails && /home/julien/Code/sm-terraform/infra/staging/assume_staging_admin.sh eb ssh content-web-staging && cd -"
+alias ssh_platform_staging="cd /home/julien/Code/platform/rails && /home/julien/Code/sm-terraform/infra/staging/assume_staging_admin.sh eb ssh platform-worker-staging && cd -"
+alias ssh_platform_web_staging="cd /home/julien/Code/platform/rails && /home/julien/Code/sm-terraform/infra/staging/assume_staging_admin.sh eb ssh platform-web-staging && cd -"
+alias ssh_content_production="cd /home/julien/Code/content/rails && /home/julien/Code/sm-terraform/infra/production/assume_production_admin.sh eb ssh content-worker-production && cd -"
+alias ssh_content_web_production="cd /home/julien/Code/content/rails && /home/julien/Code/sm-terraform/infra/production/assume_production_admin.sh eb ssh content-web-production && cd -"
+alias ssh_platform_production="cd /home/julien/Code/platform/rails && /home/julien/Code/sm-terraform/infra/production/assume_production_admin.sh eb ssh platform-worker-production && cd -"
+alias ssh_platform_web_production="cd /home/julien/Code/platform/rails && /home/julien/Code/sm-terraform/infra/production/assume_production_admin.sh eb ssh platform-web-production && cd -"
+
+alias docker_clean="sudo docker system prune --all --filter until=$(date -d "1 month ago" +%s)"
 
 #######
 # PATH
 #######
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/Users/julien/.cask/bin:/Users/julien/.cabal/bin:/Users/julien/.local/bin:$PATH
+export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/home/julien/bin:/usr/local/share/npm/bin:/usr/local/share/npm/lib/node_modules:/home/julien/.cask/bin:/home/julien/.cabal/bin:/home/julien/.local/bin:$PATH
 
 #######
 # MISC
@@ -144,8 +150,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.history
 
-export EDITOR=/usr/local/bin/vim
-export SHELL=/usr/local/bin/zsh
+export EDITOR=/usr/bin/vim
+export SHELL=/usr/bin/zsh
 
 # Bundler
 export USE_BUNDLER=force
@@ -153,23 +159,17 @@ export USE_BUNDLER=force
 # Emacs mode
 bindkey -e
 
-# Autojump
-[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-# OpenSSL
-export OPENSSL_INCLUDE_DIR=/usr/local/Cellar/openssl/1.0.2h_1/include/
-
 # Stack binaries
 export PATH="$HOME/.local/bin:$PATH"
-
-# OPAM
-. /Users/julien/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # Rustup
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Racer
-export RUST_SRC_PATH="/Users/julien/Code/rust/src"
+export RUST_SRC_PATH="/home/julien/Code/rust/src"
+
+# Autojump
+. /usr/share/autojump/autojump.sh
 
 # RBEnv
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -177,7 +177,11 @@ eval "$(rbenv init -)"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# added by travis gem
-[ -f /Users/julien/.travis/travis.sh ] && source /Users/julien/.travis/travis.sh
+# Elixir
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+# AWS
+export AWS_BUCKET_NAME="sm-dev-temp"
+export AWS_REGION="eu-west-1"
